@@ -21,3 +21,6 @@ int main(){
     }
     return 0;
 }
+
+//if upper case char - A 
+//if fixed string then no -
