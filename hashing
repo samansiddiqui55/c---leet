@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n; 
+    cout << "Enter the size of the array: "; 
+    cin >> n; 
+
+    int arr[n];
+    cout << "Enter the elements of the array: ";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i]; 
+    }
+
+    int hash[13] = {0}; // Assuming the elements are between 0 and 12
+    for (int i = 0; i < n; i++) {
+        if (arr[i] >= 0 && arr[i] < 13) {
+            hash[arr[i]] += 1; 
+        } else {
+            cout << "Element " << arr[i] << " is out of range!" << endl;
+        }
+    }
+
+    int q; 
+    cout << "Enter the number of queries: "; 
+    cin >> q;
+    while (q--) {
+        int num;
+        cout << "Enter the number you want to search: "; 
+        cin >> num; 
+        if (num >= 0 && num < 13) {
+            cout << "Count of " << num << " is: " << hash[num] << endl;
+        } else {
+            cout << "Number " << num << " is out of range!" << endl;
+        }
+    }
+
+    return 0;
+}
