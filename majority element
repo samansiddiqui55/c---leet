@@ -17,3 +17,30 @@ void sort(vector<int>& nums,int num) {
         vector <int> nums = {1,2,3,4,5,6,7,8,9,10}; 
         sort (nums,10); 
     }
+// better
+
+#include <iostream>
+#include <vector>
+#include <map>
+
+using namespace std;
+ void element (vector <int>&nums ){
+   int count=0; 
+for (int i = 0 ; i <nums.size(); i ++){
+    if (nums[i] ==nums[i+1])
+        count++; 
+    else 
+        count--; 
+ }
+
+ if (count == (nums.size()/2))
+     cout <<"majority"; 
+else
+     cout <<"not majority"; 
+ }
+     
+int main(){
+    vector <int>nums= { 7,7,5,7,5,1,5,7,5,5,7,7,5,5,5,5};
+    element(nums);
+}
+    //optimal
