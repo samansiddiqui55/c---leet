@@ -19,3 +19,26 @@ vector<int>nums = { 2,3,4};
     major(nums); 
 }
    // better 
+#include<iostream>
+#include<map>
+#include<vector>
+#include<climits>
+using namespace std ; 
+
+void major(vector<int>&nums){
+ int max = INT_MIN, sum = 0 ; 
+    for (int i = 0 ; i <nums.size(); i ++){
+        sum = sum + nums[i];   
+         if (max<sum)
+             max = sum; 
+ if (sum <0){
+     sum = 0; 
+ }
+    }
+    cout <<max; 
+}
+int main(){
+    vector<int>nums = {-2,-3,4, -1,-2,1,5,-3}; 
+    major(nums); 
+}
+    //optimal 
