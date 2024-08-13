@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std ; 
+class node {
+public:
+int data ; 
+node *next; 
+node*pre; 
+node (int data){
+  this->data = data ; 
+  this->next = NULL; 
+  this->pre =NULL;
+}
+};
+void insert (node *&head , int data ){
+node *temp  = new node (data); 
+temp ->next = head ; 
+ head->pre = temp; 
+head = temp; 
+}
+void inserttail(node *&tail,int data ){
+node *temp  = new node ( data ); 
+  tail->next = temp; 
+  temp->pre = tail; 
+  tail = temp; 
+}
+void insertmiddle (node *&head,  int pos , int data  ){
+  if (pos ==1){
+    insert(head, data); 
+    return ; 
+  }
+  node *temp = head ; 
+  int count = 1 ; 
+  while (count<pos-1 ){
+temp = temp->next; 
+    count ++; 
+  }
+  node *in = new node(data); 
+    in->next = temp->next; 
+  temp->next->pre  = in; 
+  in->pre = temp; 
+  temp->next = in; 
+  
+}
+void print (node *&head){
+  node *temp = head ; 
+  while (temp!= NULL){
+    cout << temp->data<<endl; 
+   temp = temp->next; 
+  }
+}
+int main(){
+  node *p = new node(10) ; 
+  //cout <<p->data <<endl; 
+  // <<p->next<<endl; 
+  node *head = p; 
+  node *tail = p;
+  print (head); 
+  insertt (tail, 12);
+  print(head); 
+  insertt (tail, 15);
+  print(head); 
+  insertm(head , 1, 22); 
+  print(head); 
+}
