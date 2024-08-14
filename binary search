@@ -1,0 +1,26 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int num(vector<int> nums, int target) {
+    int low = 0;
+    int high = nums.size() - 1;
+
+    while (low <= high) {
+        int mid = (high + low) / 2;  // Calculate mid inside the loop
+        if (nums[mid] == target)
+            return mid;
+        else if (nums[mid] < target)
+            low = mid + 1;  // Target is in the right half
+        else
+            high = mid - 1;  // Target is in the left half
+    }
+    return -1;  // Target not found
+}
+
+int main() {
+    vector<int> nums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int target = 8;
+    int ans = num(nums, target);
+    cout << ans;
+}
