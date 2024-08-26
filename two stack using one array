@@ -1,0 +1,65 @@
+#include<iostream>
+using namespace std ; 
+class point
+{
+public:
+int *arr; 
+int size1 ; 
+int size2 ; 
+int size; 
+int top1 ; 
+int top2; 
+point (int size1, int size2){
+    this->size = size1+size2; 
+     arr = new int [size]; 
+    this-> top1 = -1; 
+     this->top2 = size;
+}
+void push1(int element){
+    if (top1+1<top2){
+        top1++; 
+        arr[top1] = element; 
+}
+}
+void  push2 (int element ){
+    if(top1+1<top2){
+        top2 --; 
+    arr[top2] = element ; 
+
+}
+}
+void pop1(){
+    if (top1>=0){
+        top1 --; 
+    }
+}
+void pop2(){
+    if (top2<size)
+        top2++; 
+}
+ int peek1(){
+    if (top1>=0)
+        return arr[top1]; 
+     else
+        return -1; 
+}
+int peek2 (){
+    if (top2<size)
+        return arr[top2]; 
+      else return -1; 
+        
+}
+}; 
+int main(){
+    point st (6, 3); 
+    st.push1(8); 
+    st.push1(7); 
+    st.push2(1); 
+    st.push2(3); 
+    cout <<st.peek1()<<endl;  
+    cout <<st.peek2()<<endl; 
+    st.pop1(); 
+    st.pop2(); 
+    cout <<st.peek1()<<endl; 
+    cout <<st.peek2()<<endl; 
+}
