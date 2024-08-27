@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std ; 
+class point {
+public:
+char *arr ; 
+int top ; 
+int size; 
+point (int size){
+  this->size = size; 
+  this->top = -1; 
+  arr = new char[5]; 
+}
+void push(char element ){
+if (size-top>1){
+top++; 
+  arr[top] = element ; 
+}
+}
+void pop(){
+  if (top>=0)
+    top--; 
+}
+char  peek (){
+  if (top>=0){
+  return arr[top]; 
+  }
+ else 
+    return -1;  
+}
+}; 
+int  main(){
+point pt (5); 
+  pt.push('s'); 
+  pt.push('a'); 
+   pt.push('m'); 
+   pt.push('a'); 
+   pt.push('n'); 
+  cout <<pt.peek(); 
+  pt.pop(); 
+   cout <<pt.peek(); 
+  pt.pop(); 
+   cout <<pt.peek(); 
+  pt.pop(); 
+   cout <<pt.peek(); 
+  pt.pop(); 
+   cout <<pt.peek(); 
+}
