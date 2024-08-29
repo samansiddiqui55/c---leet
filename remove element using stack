@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+class Stack {
+public:
+    int *arr;
+    int size;
+    int top;
+
+    Stack(int size) {
+        this->size = size;
+        arr = new int[size];
+        this->top = -1;
+    }
+
+    void push(int element) {
+        if (top < size - 1) {
+            top++;
+            arr[top] = element;
+        }
+    }
+
+    void pop() {
+        if (top >= 0) {
+            top--;
+        }
+    }
+
+    int peek() {
+        if (top >= 0)
+            return arr[top];
+        else
+            return -1;
+    }
+
+    ~Stack() {
+        delete[] arr;
+    }
+};
+
+int main() {
+    Stack st(5);
+    st.push(6);
+    st.push(2);
+    st.push(4);
+    st.push(5);
+    st.push(4);
+
+    int n;
+    cout << "Enter the number you want to remove: ";
+    cin >> n;
+
+    int *arr1 = new int[st.size];  // Correct allocation
+    int j = 0;
+
+    while (st.peek() != -1) {
+        if (st.peek() != n) {
+            arr1[j++] = st.peek();
+        }
+        st.pop();
+    }
+
+    cout << "Stack elements after removal:\n";
+    for (int i = 0; i < j; i++) {
+        cout << arr1[i] << " ";
+    }
+
+    delete[] arr1;  // Proper deallocation
+    return 0;
+}
