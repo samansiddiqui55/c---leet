@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std ;
+class que {
+    public:
+    int size ; 
+    int *arr  ; 
+    int front; 
+    int rear ; 
+   que (int size) {
+       this->size = size ; 
+       this->front = 0; 
+       this ->rear = 0; 
+       arr = new int [size]; 
+   }
+   int push(int element){
+       if (rear== size)
+       cout <<"que is full"; 
+       else
+       arr[rear]= element ; 
+       rear ++; 
+       return 0; 
+   }
+   int pop(){
+       if (rear == front )
+       return -1; 
+       else{
+       int  ans = arr[front];
+       front++; 
+   return ans; 
+   }
+   }
+}; 
+int main(){
+    que st (4); 
+    st.push(3);
+    st.push(2);
+    st.push(6); 
+    st.push(2);
+    st.push(6); 
+    cout <<st.pop()<<endl; 
+    cout <<st.pop()<<endl;
+    cout <<st.pop()<<endl;
+    cout <<st.pop()<<endl; 
+    cout <<st.pop(); 
+}
