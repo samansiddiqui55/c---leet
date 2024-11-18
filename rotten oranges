@@ -1,0 +1,69 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+using namespace std;
+
+const int ROWS = 3; // Number of rows
+const int COLS = 5; // Number of columns
+
+// Check if i, j is within the array limits of row and column
+bool isSafe(int i, int j, int rows, int cols) {
+    return (i >= 0 && i < rows && j >= 0 && j < cols);
+}
+
+int rotOranges(int arr[ROWS][COLS]) {
+    int rows = ROWS;
+    int cols = COLS;
+    bool changed = false;
+    int no = 2; // Starting value for rotten oranges
+
+    while (true) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (arr[i][j] == no) {
+                    // Rot oranges in adjacent cells
+                    if (isSafe(i + 1, j, rows, cols) && arr[i + 1][j] == 1) {
+                        arr[i + 1][j] = arr[i][j] + 1;
+                        changed = true;
+                    }
+                    if (isSafe(i, j + 1, rows, cols) && arr[i][j + 1] == 1) {
+                        arr[i][j + 1] = arr[i][j] + 1;
+                        changed = true;
+                    }
+                    if (isSafe(i - 1, j, rows, cols) && arr[i - 1][j] == 1) {
+                        arr[i - 1][j] = arr[i][j] + 1;
+                        changed = true;
+                    }
+                    if (isSafe(i, j - 1, rows, cols) && arr[i][j - 1] == 1) {
+                        arr[i][j - 1] = arr[i][j] + 1;
+                        changed = true;
+                    }
+                }
+            }
+        }
+
+        // If no new oranges are rotted in this iteration, stop
+        if (!changed) break;
+        changed = false;
+        no++;
+    }
+
+    // Check if any fresh orange remains
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (arr[i][j] == 1) return -1; // Fresh orange found
+        }
+    }
+
+    return no - 2; // Subtract 2 because the initial rotten orange value was 2
+}
+
+// Driver function
+int main() {
+    int arr[ROWS][COLS] = { { 2, 1, 0, 2, 1 },
+                            { 1, 0, 1, 2, 1 },
+                            { 1, 0, 0, 2, 1 } };
+
+    cout << "Max time incurred: " << rotOranges(arr) << endl;
+
+    return 0;
+}
